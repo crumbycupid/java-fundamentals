@@ -14,7 +14,7 @@ public class Main {
 
   }
 
-  public static void pluralize(String str, int num) {
+  public static String pluralize(String str, int num) {
     if (num == 0 || num > 1) {
       System.out.println("I own " + num + " " + str + "s.");
     } else
