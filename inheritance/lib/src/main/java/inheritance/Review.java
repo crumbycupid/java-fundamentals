@@ -3,28 +3,36 @@ package inheritance;
 public class Review {
     String reviewBody;
     String author;
-    Float stars;
+    Int StarsScore;
 
     public Review(){
     }
 
-    public Review(String reviewBody, String author, Float stars){
+    public Review(String reviewBody, String author, Int starsScore){
         this.reviewBody = reviewBody;
         this.author = author;
-        setStars(stars);
+        setStarsScore(starsScore);
     }
-    public void setStars(Float stars){
-        this.stars = stars;
+    public void setStarsScore(Int starsScore){
+
+        this.starsScore = starsScore;
     }
 
-    public Float getStars(){
-        return stars;
+    public Int getStars(){
+        return starsScore;
     }
 
-    public void updateStars(Float stars){
-
+    public void updateStarsScore(Int starsScore){
+        if(starsScore < 0 )
+            throw new Exception("Star score cannot be negative");
+            if(starsScore > 5)
+                throw new Exception("Star score cannot exceed 5");
+            setStarsScore(starsScore);
     }
+
+
     public String getAuthor(){
         return author;
     }
+
 }
