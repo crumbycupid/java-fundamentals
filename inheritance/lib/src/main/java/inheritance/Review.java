@@ -1,38 +1,31 @@
 package inheritance;
 
 public class Review {
-    String reviewBody;
+    String text;
     String author;
-    Int StarsScore;
+    private int numOfStars;
 
-    public Review(){
-    }
-
-    public Review(String reviewBody, String author, Int starsScore){
-        this.reviewBody = reviewBody;
+    public Review(String text, String author, int numOfStars){
+        this.text = text;
         this.author = author;
-        setStarsScore(starsScore);
-    }
-    public void setStarsScore(Int starsScore){
-
-        this.starsScore = starsScore;
+        this.numOfStars = numOfStars;
     }
 
-    public Int getStars(){
-        return starsScore;
+    public String getText(){
+        return text;
     }
 
-    public void updateStarsScore(Int starsScore){
-        if(starsScore < 0 )
-            throw new Exception("Star score cannot be negative");
-            if(starsScore > 5)
-                throw new Exception("Star score cannot exceed 5");
-            setStarsScore(starsScore);
-    }
-
-
-    public String getAuthor(){
+    public String getAuthor() {
         return author;
     }
 
+
+    public int getNumOfStars() {
+        return numOfStars;
+    }
+
+    @Override
+    public String toString() {
+        return text + "By " + author + "has a " + numOfStars + "rating.";
+    }
 }
