@@ -3,49 +3,55 @@
  */
 package basiclibrary;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class Library {
     public boolean someLibraryMethod() {
         return true;
     }
+
     public String analyzeData(int[][] weatherData){
-        String output = "";
         HashSet<Integer> temperatureSet = new HashSet<>();
+        String output = "";
         int min = weatherData[0][0];
         int max = weatherData[0][0];
-        for (int i = 0; i < weatherData.length; i++) {
-            for (int j = 0; j < weatherData[i].length; j++){
-            if (weatherData[i][j] > max)
-                max = weatherData[i][j];
-            if (weatherData[i][j] < min)
-                min = weatherData[i][j];
-            temperatureSet.add(weatherData[i][j]);
+        for (int[] weatherDatum : weatherData) {
+            for (int i : weatherDatum) {
+                if (i > max)
+                    max = i;
+                if (i < min)
+                    min = i;
+                temperatureSet.add(i);
             }
         }
+        System.out.println("High: " + max);
+        System.out.println("Low: " + min);
         for (int i = min; i <= max; i++) {
             if (temperatureSet.contains(i))
                 output = i + " ";
+            else System.out.println("Never saw temperature " + i);
         }
         return output;
     }
 
-//    public static String tally(List<arr>) {
-//        HashMap<String, Integer> votes = new HashMap<>();
-//        int numVotes = 0;
-//        String elected = "";
-//        for (string vote : arr) {
-//            if (votes.containsKey(vote)) {
-//                votes.put(vote, votes.get(vote) + 1);
-//            } else {
-//                votes.put(vote,1);
-//            } for (String candidate : arr) {
-//                if(votes.get(vote) > numVotes) {
-//                    numVotes = votes.get(vote);
-//                    elected = vote;
-//                }
-//            }
-//        }
-//        return elected;
-//    }
+    public static String tally(List<String> votesList) {
+        HashMap<String, Integer> votes = new HashMap<>();
+        int numVotes = 0;
+        String elected = "";
+        for (String vote : votesList) {
+            if (votes.containsKey(vote)) {
+                votes.put(vote, votes.get(vote) + 1);
+            } else {
+                votes.put(vote, 1);
+            } for (String candidate : votesList) {
+                if(votes.get(vote) > numVotes) {
+                    numVotes = votes.get(vote);
+                    elected = vote;
+                }
+            }
+        }
+        return elected;
+    }
 }
